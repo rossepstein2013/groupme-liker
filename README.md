@@ -8,7 +8,7 @@ GROUP_ID is the GroupMe ID for the group you would like this sender's messages t
 
 To get a list of available groups:
 ```
-curl https://api.groupme.com/v3/groups/1683521?token={token}
+curl https://api.groupme.com/v3/groups/?token={token}
 ```
 
 Must create a "bot" in the group that you'd like to receive the webhook:
