@@ -1,4 +1,4 @@
-## Python Flask Skeleton for Google App Engine
+## GroupMe Liker with Flask on Google App Engine
 
 ## Setup
 
