@@ -1,11 +1,16 @@
 ## Python Flask Skeleton for Google App Engine
 
-A skeleton for building Python applications on Google App Engine with the
-[Flask micro framework](http://flask.pocoo.org).
+## Setup
 
-See our other [Google Cloud Platform github
-repos](https://github.com/GoogleCloudPlatform) for sample applications and
-scaffolding for other python frameworks and use cases.
+SENDER_ID is the GroupMe user-id you would like everyone to automatically "Like"
+GROUP_ID is the GroupMe ID for the group you would like this sender's messages to be "Liked" in
+
+To get a list of available groups: curl https://api.groupme.com/v3/groups/1683521?token={token}
+
+Must create a "bot" in the group that you'd like to receive the webhook:
+curl -X POST -d '{"bot": { "name": "Your bot name", "group_id": {group_id}, "callback_url": "https://{project_id}.appspot.com/webhook/" }}' -H 'Content-Type: application/json' https://api.groupme.com/v3/bots?token={token}
+
+The bot is used to listen to all messages posted. For every message sent on the group, if the sender is the one you have specified then all folks who have gone through the oauth workflow will like each message as it is posted
 
 ## Run Locally
 1. Install the [App Engine Python SDK](https://developers.google.com/appengine/downloads).
@@ -46,34 +51,3 @@ To deploy the application:
    appcfg.py -A <your-project-id> --oauth2 update .
    ```
 1. Congratulations!  Your application is now live at your-app-id.appspot.com
-
-## Next Steps
-This skeleton includes `TODO` markers to help you find basic areas you will want
-to customize.
-
-### Relational Databases and Datastore
-To add persistence to your models, use
-[NDB](https://developers.google.com/appengine/docs/python/ndb/) for
-scale.  Consider
-[CloudSQL](https://developers.google.com/appengine/docs/python/cloud-sql)
-if you need a relational database.
-
-### Installing Libraries
-See the [Third party
-libraries](https://developers.google.com/appengine/docs/python/tools/libraries27)
-page for libraries that are already included in the SDK.  To include SDK
-libraries, add them in your app.yaml file. Other than libraries included in
-the SDK, only pure python libraries may be added to an App Engine project.
-
-### Feedback
-Star this repo if you found it useful. Use the github issue tracker to give
-feedback on this repo.
-
-## Contributing changes
-See [CONTRIB.md](CONTRIB.md)
-
-## Licensing
-See [LICENSE](LICENSE)
-
-## Author
-Logan Henriquez and Johan Euphrosine
